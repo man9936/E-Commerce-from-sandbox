@@ -1,0 +1,135 @@
+body {
+  background-color: #d1f3e7;
+}
+
+#title-Tag-Line {
+  font-size: 20px;
+}
+
+.form {
+  background: #fff;
+  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+  border-radius: 5px;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  left: 0;
+  right: 0;
+  position: unset;
+  border: 5px solid teal;
+  /*   z-index: 1; */
+}
+::-webkit-input-placeholder {
+  font-size: 1.3em;
+}
+
+.title {
+  display: block;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin: 10px auto 5px;
+  width: 300px;
+  font-size: 2em;
+  font-weight: bold;
+}
+.termsConditions {
+  margin: 0 auto 5px 80px;
+}
+
+.secondaryTitle {
+  color: grey;
+}
+
+.name {
+  background-color: #ebebeb;
+  color: white;
+}
+.name:hover {
+  border-bottom: 5px solid #0e3721;
+  height: 30px;
+  width: 380px;
+  transition: ease 0.5s;
+}
+
+.email {
+  background-color: #ebebeb;
+  height: 2em;
+}
+
+.email:hover {
+  border-bottom: 5px solid #0e3721;
+  height: 30px;
+  width: 380px;
+  transition: ease 0.5s;
+}
+
+.message {
+  background-color: #ebebeb;
+  overflow: hidden;
+  height: 10rem;
+}
+
+.message:hover {
+  border-bottom: 5px solid #0e3721;
+  height: 12em;
+  width: 380px;
+  transition: ease 0.5s;
+}
+
+.formEntry {
+  display: block;
+  margin: auto;
+  min-width: 300px;
+  padding: 5px;
+  border-radius: 2px;
+  border: none;
+  transition: all 0.5s ease 0s;
+  background-color: cadetblue;
+  color: black;
+  font-size: medium;
+  transition: ease-in-out 0.5s;
+}
+
+.submit {
+  display: block;
+  margin: auto;
+  min-width: 300px;
+  padding: 5px;
+  border-radius: 2px;
+  color: #50a11f;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(146, 190, 119, 1) 51%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  font-size: 20px;
+  box-shadow: 15px 15px 15px 5px rgba(78, 72, 77, 0.219);
+  transform: translateY(-3px);
+  width: 300px;
+  border-top: 5px solid rgb(34, 193, 195);
+  border-radius: 0%;
+}
+
+.submit:hover {
+  width: 200px;
+  color: white;
+  background-color: #0e3721;
+  font-size: 20px;
+  box-shadow: 15px 15px 15px 5px rgba(78, 72, 77, 0.219);
+  transform: translateY(-3px);
+  width: 300px;
+  border-top: 5px solid #0e3750;
+  border-radius: 0%;
+}
+
+@keyframes bounce {
+  0% {
+    tranform: translate(0, 4px);
+  }
+  50% {
+    transform: translate(0, 8px);
+  }
+}
