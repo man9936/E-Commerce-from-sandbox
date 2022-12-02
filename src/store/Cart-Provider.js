@@ -1,8 +1,9 @@
 import React, { useReducer } from "react";
+import { useState } from "react";
 import CartContext from "./Cart-Context";
-
 const defaultCartState = {
-  items: []
+  items: [],
+  token: "",
 };
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
@@ -20,8 +21,6 @@ const cartReducer = (state, action) => {
       updatedItems = state.items.concat(action.item);
       return { items: updatedItems };
     }
-    // return{ items:updatedItems}
-    // return defaultCartState
   }
 
   let updatedItems;
@@ -37,7 +36,8 @@ const CartProvider = (props) => {
     cartReducer,
     defaultCartState
   );
-
+  const intialToken = localStorage.getItem("token");
+  const [token, setToken] = useState(intialToken);
   const addItemToCartHandler = (item) => {
     dispatchCartAction({ type: "ADD", item: item });
   };
@@ -46,10 +46,26 @@ const CartProvider = (props) => {
     dispatchCartAction({ type: "REMOVE", id: id });
   };
 
+  const userIsLoggedIn = !!token;
+
+  const loginHandler = (token) => {
+    setToken(token);
+    localStorage.setItem("token", token);
+    console.log(token);
+  };
+  
+  const logoutHandler=()=>{
+    setToken(null);
+    localStorage.removeItem('token');
+  }
+
   const cartContext = {
     items: cartState.items,
-    addItem: addItemToCartHandler,
-    removeItem: removeItemFromCartHandler
+    removeItem: removeItemFromCartHandler,
+    token: token,
+    isLoggedin: userIsLoggedIn,
+    login: loginHandler,
+    logout:logoutHandler
   };
 
   return (

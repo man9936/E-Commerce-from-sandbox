@@ -11,6 +11,7 @@ import HomeHeader from "./Pages/HomeHeader";
 import ContactUs from "./Pages/ContactUs";
 import About from "./Pages/About";
 import ProductDetails from "./Pages/ProductDetails";
+import Login from "./Pages/Login";
 
 export default function App() {
   const [showCart, setShowCart] = useState(false);
@@ -45,6 +46,10 @@ export default function App() {
         <Route path="/contact">
           <Header2 />
           <ContactUs />
+        </Route>
+        <Route path="/login">
+          <Header2 />
+          <Login />
         </Route>
         <Route path="/productdetails/:productName">
           <ProductDetails />
