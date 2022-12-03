@@ -1,71 +1,74 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { useState } from "react";
 import CartContext from "./Cart-Context";
-const defaultCartState = {
-  items: [],
-  token: "",
-};
-const cartReducer = (state, action) => {
-  if (action.type === "ADD") {
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.item.id
-    );
-    const existingCartItem = state.items[existingCartItemIndex];
 
-    let updatedItems;
-
-    if (existingCartItem) {
-      alert("Item is already added");
-      return { items: state.items };
-    } else {
-      updatedItems = state.items.concat(action.item);
-      return { items: updatedItems };
-    }
-  }
-
-  let updatedItems;
-  if (action.type === "REMOVE") {
-    updatedItems = state.items.filter((item) => item.id !== action.id);
-
-    return { items: updatedItems };
-  }
-  return defaultCartState;
-};
 const CartProvider = (props) => {
-  const [cartState, dispatchCartAction] = useReducer(
-    cartReducer,
-    defaultCartState
-  );
-  const intialToken = localStorage.getItem("token");
-  const [token, setToken] = useState(intialToken);
+  const [items, updateItems] = useState([]);
+
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({ type: "ADD", item: item });
+    let itemsPresent = false;
+    const newItemArray = [...items];
+    newItemArray.forEach((element, index) => {
+      if (item.id === element.id) {
+        itemsPresent = true;
+        newItemArray[index].quantity =
+          Number(item.quantity) + Number(newItemArray[index].quantity);
+      }
+    });
+    if (itemsPresent === false) {
+      updateItems([...items, item]);
+    } else {
+      updateItems(newItemArray);
+    }
   };
 
   const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: "REMOVE", id: id });
+    let hasItem = false;
+    const newItemArray = [...items];
+    newItemArray.forEach((element, index) => {
+      if (id === element.id && element.quantity === 1) {
+        hasItem = true;
+        const temp = newItemArray.splice(index, 1);
+        updateItems(temp);
+      } else if (id === element.id) {
+        hasItem = true;
+        newItemArray[index].quantity = Number(newItemArray[index].quantity) - 1;
+      }
+    });
+    hasItem === false ? updateItems([...items]) : updateItems(newItemArray);
   };
+  const intialToken = localStorage.getItem("token");
+  const [token, setToken] = useState(intialToken);
 
-  const userIsLoggedIn = !!token;
+  const [isLoggedin, setIsLoggedIn] = useState(!!token);
 
   const loginHandler = (token) => {
     setToken(token);
+
     localStorage.setItem("token", token);
     console.log(token);
+    if (isLoggedin) {
+      console.log("status:logged");
+    }
   };
-  
-  const logoutHandler=()=>{
+
+  const logoutHandler = () => {
     setToken(null);
-    localStorage.removeItem('token');
-  }
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    if (!isLoggedin) {
+      console.log("status:de--logged");
+    }
+  };
 
   const cartContext = {
-    items: cartState.items,
+    items: items,
+    addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
     token: token,
-    isLoggedin: userIsLoggedIn,
+    isLoggedin: isLoggedin,
     login: loginHandler,
-    logout:logoutHandler
+    logout: logoutHandler,
   };
 
   return (

@@ -5,3 +5,9 @@ about {
   width: 200px;
   height: 200px;
 }
+
+.wrap {
+  background-color: black;
+  color: cadetblue;
+  border-radius: 8px;
+}

@@ -3,7 +3,7 @@ import classes from "./About.module.css";
 
 export default function About() {
   return (
-    <section>
+    <section className={classes.wrap}>
       <h1>About</h1>
       <div className={classes.about}>
         <img
