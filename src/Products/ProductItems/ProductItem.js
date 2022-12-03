@@ -14,13 +14,13 @@ export default function ProductItem(props) {
       price: props.price,
       id: props.id,
       url: props.url,
-      quantity: props.quantity
+      quantity: props.quantity,
     };
 
-    cartCtx.addItem(data);
+    cartCtx.addItem({ ...data, quantity: 1 });
   };
   return (
-    <form onSubmit={addItemToCart}>
+    <form key={props.id} onSubmit={addItemToCart}>
       <div className={classes.product}>
         <Link to="/productdetails/:productName">
           <h2>{props.title}</h2>
@@ -31,7 +31,7 @@ export default function ProductItem(props) {
         </Link>
 
         <div className={classes["product-price"]}>${props.price}</div>
-        <button>Add to Cart</button>
+        <button type="submit">Add to Cart</button>
       </div>
     </form>
   );

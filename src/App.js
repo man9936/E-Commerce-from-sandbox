@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "./Header/Header";
 import Header2 from "./Header/Header2";
 import Product from "./Products/Product";
@@ -12,8 +12,10 @@ import ContactUs from "./Pages/ContactUs";
 import About from "./Pages/About";
 import ProductDetails from "./Pages/ProductDetails";
 import Login from "./Pages/Login";
+import CartContext from "./store/Cart-Context";
 
 export default function App() {
+  const cartCtx = useContext(CartContext);
   const [showCart, setShowCart] = useState(false);
 
   const showCartHandler = () => {
@@ -27,18 +29,25 @@ export default function App() {
   return (
     <CartProvider>
       <Header onShowCart={showCartHandler} />
+      {showCart && <Cart onClose={hideCartHandler} />}
       <Switch>
-        <Route path="/store" exact>
+        <Route path="/" exact>
           <Header2 />
-          {showCart && <Cart onClose={hideCartHandler} />}
-
-          <Product />
         </Route>
+
+        <Route path="/store">
+            <div>
+              <Header2 />
+              <Product />
+            </div>
+        </Route>
+
+      
+
         <Route path="/about">
           <Header2 />
           <About />
         </Route>
-
         <Route path="/home">
           <HomeHeader />
           <Home />

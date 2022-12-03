@@ -13,9 +13,11 @@ export default function Header(props) {
           {" "}
           Home{" "}
         </NavLink>
+
         <NavLink activeClassName={classes.active} to="/store">
           Store
         </NavLink>
+
         <NavLink activeClassName={classes.active} to="/about">
           About
         </NavLink>

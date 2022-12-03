@@ -2,8 +2,9 @@ import React from "react";
 import { useContext } from "react";
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
+import Header from "../Header/Header";
 import CartContext from "../store/Cart-Context";
-import classes from "./ContactUs.module.css";
+import classes from "./Login.module.css";
 
 function Login() {
   const authCtx = useContext(CartContext);
@@ -39,14 +40,14 @@ function Login() {
           return res.json();
         } else {
           return res.json().then((data) => {
-            let errorMessage = "Entered wrong details";
+            let errorMessage = "Invalid details";
             throw new Error(errorMessage);
           });
         }
       })
       .then((data) => {
         authCtx.login(data.idToken);
-
+        authCtx.isLoggedIn = true;
         history.replace("/store");
       })
       .catch((err) => {
@@ -55,31 +56,38 @@ function Login() {
   };
 
   return (
-    <div className={classes.wrapper}>
-      <form onSubmit={submitHandler} className={classes.form}>
-        <div className={classes.title}>Login</div>
-        <label>Email</label>
-        <input
-          type="text"
-          style={{ width: "80%", backgroundColor: "yellow" }}
-          ref={emailInputRef}
-          placeholder="test@gmail.com"
-        />
-        <br />
-        <br />
-        <label>Password</label>
-        <input
-          type="text"
-          style={{ width: "80%", backgroundColor: "yellow" }}
-          ref={passwordInputRef}
-        />
-        <br />
-        <br />
-        <button type="submit" style={{ width: "100%" }}>
-          Login
-        </button>
-      </form>
-    </div>
+    <>
+      <section className={classes.auth}>
+        <div className={classes.wrapper}>
+          <form onSubmit={submitHandler} className={classes.form}>
+            <div>
+              <h2>Login</h2>
+            </div>
+            <div className={classes.control}>
+              <label>Email</label>
+              <input
+                type="text"
+                ref={emailInputRef}
+                placeholder="xyz@gmail.com"
+              />
+            </div>
+            <br />
+            <div className={classes.control}>
+              <label>Password</label>
+              <input
+                type="text"
+                ref={passwordInputRef}
+                placeholder="min-six-digit"
+              />
+            </div>
+            <br />
+            <div className={classes.actions}>
+              <button>Login</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </>
   );
 }
 

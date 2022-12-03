@@ -3,12 +3,12 @@ import CartItem from "./CartItem";
 import CartContext from "../store/Cart-Context";
 import { useContext } from "react";
 import Modal from "../UI/Modal";
+import classes from "./Cart.module.css";
 
 const Cart = (props) => {
   let total = 0;
-  const cartcntx = useContext(CartContext);
+  const cartCtx = useContext(CartContext);
 
-  const length = cartcntx.items.length;
   const purchaseItemHandler = (item) => {
     if (Number(item.quantity) < 1) {
       console.log(item.quantity);
@@ -19,20 +19,36 @@ const Cart = (props) => {
     }
   };
 
-  cartcntx.items.forEach((item) => {
+  let hasItem = cartCtx.items.length > 0;
+
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({ ...item, quantity: 1 });
+  };
+
+  const cartItemRemoveHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
+
+  cartCtx.items.forEach((item) => {
     total = total + Number(item.price) * Number(item.quantity);
   });
   total = `$ ${total.toFixed(2)}`;
 
-  const cartItems = cartcntx.items.map((item) => (
-    <CartItem
-      key={item.key}
-      title={item.title}
-      price={item.price}
-      url={item.imageUrl}
-      quantity={item.quantity}
-    />
-  ));
+  const cartItems = (
+    <ul className={classes["cart-items"]}>
+      {cartCtx.items.map((item) => (
+        <CartItem
+          key={item.id}
+          title={item.title}
+          price={item.price}
+          url={item.imageUrl}
+          quantity={item.quantity}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onAdd={cartItemAddHandler.bind(null, item)}
+        />
+      ))}
+    </ul>
+  );
 
   return (
     <Modal onClose={props.onClose}>
@@ -41,11 +57,13 @@ const Cart = (props) => {
       </div>
       {cartItems}
       <div>
-        <span>Total Amount</span>
+        <span className={classes.total}>Total Amount</span>
         {total}
       </div>
 
-      {length && <button onClick={purchaseItemHandler}>Purchase</button>}
+      <button className={classes["button--alt"]} onClick={purchaseItemHandler}>
+        Purchase
+      </button>
     </Modal>
   );
 };
