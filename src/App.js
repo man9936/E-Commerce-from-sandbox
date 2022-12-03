@@ -36,13 +36,15 @@ export default function App() {
         </Route>
 
         <Route path="/store">
+          {!cartCtx.isLoggedin ? (
             <div>
               <Header2 />
               <Product />
             </div>
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
-
-      
 
         <Route path="/about">
           <Header2 />

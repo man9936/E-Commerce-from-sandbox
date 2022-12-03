@@ -47,7 +47,7 @@ function Login() {
       })
       .then((data) => {
         authCtx.login(data.idToken);
-        authCtx.isLoggedIn = true;
+        authCtx.setIsLoggedIn = true;
         history.replace("/store");
       })
       .catch((err) => {
