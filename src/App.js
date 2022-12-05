@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-
+import { Route, Switch } from "react-router-dom";
+import ProtectedRoute from "./store/ProtectedRoute";
 import Header from "./Header/Header";
 import Header2 from "./Header/Header2";
 import Product from "./Products/Product";
@@ -25,14 +25,6 @@ export default function App() {
 
   const hideCartHandler = () => {
     setShowCart(false);
-  };
-
-  const ProtectedRoute = ({ children }) => {
-    // if (!cartCtx.isLoggedin) {
-    //   return <Redirect to="/login" />;
-    // }
-
-    return children;
   };
 
   return (

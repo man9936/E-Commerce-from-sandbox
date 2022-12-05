@@ -24,7 +24,7 @@
 .shoppingCart {
   display: inline-block;
   font-size: 20px;
-  color: var(--lightDark);
+  color: grey;
   margin-right: 15px;
   text-align: right;
 }
