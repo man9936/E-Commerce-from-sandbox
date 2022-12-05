@@ -33,16 +33,33 @@
 .testHeader a.active {
   color: white;
   padding-bottom: 0.25rem;
-  border-bottom: 4px solid #95bcf0;
+
+  background-color: lightseagreen;
 }
 
 .testHeader a {
   color: lightgray;
   text-decoration: none;
+  height: 100%;
+  padding: 5px 15px;
 }
 
 .shoppingCart :hover {
   color: whitesmoke;
   border-color: greenyellow;
   background-color: maroon;
+}
+
+.btn {
+  background-color: lightgreen;
+  height: 100%;
+  padding: 5px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn:active,
+.btn:hover {
+  background-color: lightseagreen;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }

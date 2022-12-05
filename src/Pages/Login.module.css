@@ -2,7 +2,7 @@
   margin: 3rem auto;
   width: 95%;
   max-width: 25rem;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: lightseagreen;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
@@ -12,7 +12,7 @@
 }
 
 .auth h1 {
-  text-align: center;
+  text-align: start;
   color: Black;
 }
 
@@ -46,7 +46,7 @@
   align-items: center;
 }
 
-.actions button {
+.actions > button {
   cursor: pointer;
   font: inherit;
   color: white;

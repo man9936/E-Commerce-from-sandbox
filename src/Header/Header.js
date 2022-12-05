@@ -26,7 +26,11 @@ export default function Header(props) {
             Login
           </NavLink>
         )}
-        {authCtx.isLoggedin && <button onClick={authCtx.logout}>Logout</button>}
+        {authCtx.isLoggedin && (
+          <button className={classes.btn} onClick={authCtx.logout}>
+            Logout
+          </button>
+        )}
         <NavLink activeClassName={classes.active} to="/contact">
           Contact Us
         </NavLink>
