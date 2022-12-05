@@ -54,7 +54,11 @@ export default function App() {
           <About />
           <Footer />
         </Route>
-        <Route path="/home"></Route>
+        <Route path="/home">
+          <HomeHeader />
+          <Home />
+          <Footer />
+        </Route>
         <Route path="/contact">
           <Header2 />
           <ContactUs />
