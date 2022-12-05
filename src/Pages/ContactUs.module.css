@@ -7,9 +7,9 @@ body {
 }
 
 .form {
-  background: #fff;
+  background: lightseagreen;
   box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
-  border-radius: 5px;
+  border-radius: 15px;
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
@@ -18,7 +18,7 @@ body {
   left: 0;
   right: 0;
   position: unset;
-  border: 5px solid teal;
+  border: 1px solid white;
   /*   z-index: 1; */
 }
 ::-webkit-input-placeholder {
@@ -85,32 +85,26 @@ body {
   border-radius: 2px;
   border: none;
   transition: all 0.5s ease 0s;
-  background-color: cadetblue;
+  background-color: lightgray;
   color: black;
   font-size: medium;
   transition: ease-in-out 0.5s;
 }
 
 .submit {
-  display: block;
-  margin: auto;
-  min-width: 300px;
-  padding: 5px;
-  border-radius: 2px;
-  color: #50a11f;
-  background: rgb(34, 193, 195);
-  background: linear-gradient(
-    0deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(146, 190, 119, 1) 51%,
-    rgba(253, 187, 45, 1) 100%
-  );
-  font-size: 20px;
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: gray;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
   box-shadow: 15px 15px 15px 5px rgba(78, 72, 77, 0.219);
   transform: translateY(-3px);
   width: 300px;
   border-top: 5px solid rgb(34, 193, 195);
   border-radius: 0%;
+  margin: 20px;
 }
 
 .submit:hover {

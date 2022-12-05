@@ -4,6 +4,7 @@ import classes from "./Product.module.css";
 
 const productsArr = [
   {
+    key: "1",
     id: "1",
     quantity: "1",
     title: "Colors",
@@ -14,6 +15,7 @@ const productsArr = [
   },
 
   {
+    key: "2",
     id: "2",
     quantity: "1",
     title: "Black and white Colors",
@@ -24,6 +26,7 @@ const productsArr = [
   },
 
   {
+    key: "3",
     id: "3",
     quantity: "1",
     title: "Yellow and Black Colors",
@@ -34,6 +37,7 @@ const productsArr = [
   },
 
   {
+    key: "4",
     id: "4",
     quantity: "1",
     title: "Blue Color",
@@ -47,7 +51,8 @@ const productsArr = [
 const Product = () => {
   const productItem = productsArr.map((ele) => (
     <ProductItem
-      key={ele.id}
+      key={ele.key}
+      id={ele.id}
       title={ele.title}
       price={ele.price}
       url={ele.imageUrl}

@@ -12,8 +12,9 @@ export default function HeaderCartButton(props) {
   return (
     <div>
       <button className={classes.button} onClick={props.onClick}>
-        <span>Cart </span>
-        <span className={classes.badge}>{quantity}</span>
+        <span>Cart:- </span>
+
+        <span className={classes.badge}> {quantity}</span>
       </button>
     </div>
   );

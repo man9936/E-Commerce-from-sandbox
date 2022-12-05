@@ -40,25 +40,18 @@ const CartProvider = (props) => {
   const intialToken = localStorage.getItem("token");
   const [token, setToken] = useState(intialToken);
 
-  const [isLoggedin, setIsLoggedIn] = useState(!!token);
+  const userIsLoggedIn = !!token;
 
   const loginHandler = (token) => {
     setToken(token);
 
     localStorage.setItem("token", token);
     console.log(token);
-    if (isLoggedin) {
-      console.log("status:logged");
-    }
   };
 
   const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    if (!isLoggedin) {
-      console.log("status:de--logged");
-    }
   };
 
   const cartContext = {
@@ -66,7 +59,7 @@ const CartProvider = (props) => {
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
     token: token,
-    isLoggedin: isLoggedin,
+    isLoggedin: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
   };

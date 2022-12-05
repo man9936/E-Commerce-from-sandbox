@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import ProtectedRoute from "./store/ProtectedRoute";
 import Header from "./Header/Header";
 import Header2 from "./Header/Header2";
 import Product from "./Products/Product";
@@ -36,14 +37,12 @@ export default function App() {
         </Route>
 
         <Route path="/store">
-          {!cartCtx.isLoggedin ? (
+          <ProtectedRoute>
             <div>
               <Header2 />
               <Product />
             </div>
-          ) : (
-            <Redirect to="/login" />
-          )}
+          </ProtectedRoute>
         </Route>
 
         <Route path="/about">
