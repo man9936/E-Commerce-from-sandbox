@@ -28,10 +28,21 @@
   margin-right: 15px;
   text-align: right;
 }
-.header a:hover,
-.header a:active,
-.header a.active {
+.testHeader a:hover,
+.testHeader a:active,
+.testHeader a.active {
   color: white;
   padding-bottom: 0.25rem;
   border-bottom: 4px solid #95bcf0;
+}
+
+.testHeader a {
+  color: lightgray;
+  text-decoration: none;
+}
+
+.shoppingCart :hover {
+  color: whitesmoke;
+  border-color: greenyellow;
+  background-color: maroon;
 }
