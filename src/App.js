@@ -14,6 +14,7 @@ import About from "./Pages/About";
 import ProductDetails from "./Pages/ProductDetails";
 import Login from "./Pages/Login";
 import CartContext from "./store/Cart-Context";
+import Footer from "./UI/Footer";
 
 export default function App() {
   const cartCtx = useContext(CartContext);
@@ -33,7 +34,9 @@ export default function App() {
       {showCart && <Cart onClose={hideCartHandler} />}
       <Switch>
         <Route path="/" exact>
-          <Header2 />
+          <HomeHeader />
+          <Home />
+          <Footer />
         </Route>
 
         <Route path="/store">
@@ -41,6 +44,7 @@ export default function App() {
             <div>
               <Header2 />
               <Product />
+              <Footer />
             </div>
           </ProtectedRoute>
         </Route>
@@ -48,21 +52,22 @@ export default function App() {
         <Route path="/about">
           <Header2 />
           <About />
+          <Footer />
         </Route>
-        <Route path="/home">
-          <HomeHeader />
-          <Home />
-        </Route>
+        <Route path="/home"></Route>
         <Route path="/contact">
           <Header2 />
           <ContactUs />
+          <Footer />
         </Route>
         <Route path="/login">
           <Header2 />
           <Login />
+          <Footer />
         </Route>
         <Route path="/productdetails/:productName">
           <ProductDetails />
+          <Footer />
         </Route>
       </Switch>
     </CartProvider>
