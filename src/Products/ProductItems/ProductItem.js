@@ -15,6 +15,7 @@ export default function ProductItem(props) {
       id: props.id,
       url: props.url,
       quantity: props.quantity,
+      key: props.id,
     };
 
     cartCtx.addItem({ ...data, quantity: 1 });

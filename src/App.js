@@ -28,9 +28,9 @@ export default function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
-    if (!cartCtx.isLoggedin) {
-      return <Redirect to="/login" />;
-    }
+    // if (!cartCtx.isLoggedin) {
+    //   return <Redirect to="/login" />;
+    // }
 
     return children;
   };
