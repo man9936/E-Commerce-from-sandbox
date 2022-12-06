@@ -6,7 +6,6 @@ import Modal from "../UI/Modal";
 import classes from "./Cart.module.css";
 
 const Cart = (props) => {
- 
   const cartCtx = useContext(CartContext);
 
   const [products, setProducts] = useState([]);
@@ -33,8 +32,6 @@ const Cart = (props) => {
     cartCtx.removeItem(id);
   };
 
-
-
   useEffect(() => {
     getProductData();
   }, []);
@@ -50,6 +47,7 @@ const Cart = (props) => {
       }
 
       const data = await response.json();
+
       setProducts(data);
 
       const cartProduct = data;
@@ -65,6 +63,7 @@ const Cart = (props) => {
       const quantity = data.reduce((currNum, item) => {
         return currNum + item.quantity;
       }, 0);
+      ////trying filtering
     } catch (err) {
       console.log(err.message);
     }
@@ -86,7 +85,7 @@ const Cart = (props) => {
           price={item.price}
           url={item.imageUrl}
           quantity={item.quantity}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onRemove={cartItemRemoveHandler.bind(null, item._id)}
           onAdd={cartItemAddHandler.bind(null, item)}
           getProductData={getProductData}
           removeAllItem={removeAllItem}

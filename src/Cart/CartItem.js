@@ -22,7 +22,8 @@ export default function CartItem(props) {
       .catch((err) => {
         alert(err);
       });
-  };
+  };  
+  
 
   return (
     <li className={classes["cart-item"]}>

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState,useContext } from "react";
 import CartContext from "../../store/Cart-Context";
 import classes from "./ProductItem.module.css";
 import { Link } from "react-router-dom";
 
 export default function ProductItem(props) {
   const cartCtx = useContext(CartContext);
+
 
   const addItemToCart = (event) => {
     event.preventDefault();
@@ -34,6 +35,7 @@ export default function ProductItem(props) {
       })
       .then((data) => {
         console.log("idd", data._id);
+        console.log(data.quantity);
       })
       .catch((err) => {
         alert(err);

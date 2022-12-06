@@ -49,6 +49,12 @@ const productsArr = [
 ];
 
 const Product = () => {
+
+ 
+  
+  
+  
+  
   const productItem = productsArr.map((ele) => (
     <ProductItem
       key={ele.key}
