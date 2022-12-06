@@ -6,11 +6,12 @@ import Modal from "../UI/Modal";
 import classes from "./Cart.module.css";
 
 const Cart = (props) => {
-  let total = 0;
+ 
   const cartCtx = useContext(CartContext);
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [price, setPrice] = useState(0);
 
   const purchaseItemHandler = (item) => {
     if (Number(item.quantity) < 1) {
@@ -32,10 +33,7 @@ const Cart = (props) => {
     cartCtx.removeItem(id);
   };
 
-  cartCtx.items.forEach((item) => {
-    total = total + Number(item.price) * Number(item.quantity);
-  });
-  total = `$ ${total.toFixed(2)}`;
+
 
   useEffect(() => {
     getProductData();
@@ -53,6 +51,20 @@ const Cart = (props) => {
 
       const data = await response.json();
       setProducts(data);
+
+      const cartProduct = data;
+      let tempPrice = 0;
+      cartProduct.forEach((product) => {
+        tempPrice += product.price * product.quantity;
+      });
+
+      setPrice(tempPrice);
+      console.log(tempPrice);
+
+      cartCtx.items = data;
+      const quantity = data.reduce((currNum, item) => {
+        return currNum + item.quantity;
+      }, 0);
     } catch (err) {
       console.log(err.message);
     }
@@ -90,8 +102,7 @@ const Cart = (props) => {
       </div>
       {cartItems}
       <div>
-        <span className={classes.total}>Total Amount</span>
-        {total}
+        <span className={classes.total}>Total Amount</span>${price}
       </div>
 
       <button className={classes["button--alt"]} onClick={purchaseItemHandler}>
