@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import CartItem from "./CartItem";
 import CartContext from "../store/Cart-Context";
 import { useContext } from "react";
@@ -8,6 +8,9 @@ import classes from "./Cart.module.css";
 const Cart = (props) => {
   let total = 0;
   const cartCtx = useContext(CartContext);
+
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const purchaseItemHandler = (item) => {
     if (Number(item.quantity) < 1) {
@@ -34,18 +37,47 @@ const Cart = (props) => {
   });
   total = `$ ${total.toFixed(2)}`;
 
+  useEffect(() => {
+    getProductData();
+  }, []);
+
+  const getProductData = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        "https://crudcrud.com/api/72553e7fe0ec4e44ac0c4877161485af/cart"
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong....");
+      }
+
+      const data = await response.json();
+      setProducts(data);
+    } catch (err) {
+      console.log(err.message);
+    }
+    setIsLoading(false);
+  }, []);
+
+  const removeAllItem = () => {
+    setProducts([]);
+  };
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
-      {cartCtx.items.map((item) => (
+      {products.map((item) => (
         <CartItem
           key={item.id}
           id={item.id}
+          _id={item._id}
           title={item.title}
           price={item.price}
           url={item.imageUrl}
           quantity={item.quantity}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
           onAdd={cartItemAddHandler.bind(null, item)}
+          getProductData={getProductData}
+          removeAllItem={removeAllItem}
         />
       ))}
     </ul>

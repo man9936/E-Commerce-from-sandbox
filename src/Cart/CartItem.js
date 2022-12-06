@@ -4,6 +4,26 @@ import classes from "./CartItem.module.css";
 export default function CartItem(props) {
   const price = `$${props.price.toFixed(2)}`;
 
+  const removeItemCrud = () => {
+    // props.removeItem(props.id);
+    console.log("id", props._id);
+    fetch(
+      `https://crudcrud.com/api/72553e7fe0ec4e44ac0c4877161485af/cart/${props._id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => {
+        console.log(res);
+        alert("deleted");
+        props.removeAllItem();
+        props.getProductData();
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
+
   return (
     <li className={classes["cart-item"]}>
       <div className={classes["image-box"]}>
@@ -17,7 +37,7 @@ export default function CartItem(props) {
       {/* <span>{state}</span> */}
       <button onClick={props.onAdd}>+</button>
       <div className={classes.actions}>
-        <button>x</button>
+        <button onClick={removeItemCrud}>x</button>
       </div>
     </li>
   );

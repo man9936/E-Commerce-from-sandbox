@@ -19,7 +19,27 @@ export default function ProductItem(props) {
     };
 
     cartCtx.addItem({ ...data, quantity: 1 });
+
+    fetch("https://crudcrud.com/api/72553e7fe0ec4e44ac0c4877161485af/cart", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        console.log("idd", data._id);
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
+
   return (
     <form key={props.id} onSubmit={addItemToCart}>
       <div className={classes.product}>
