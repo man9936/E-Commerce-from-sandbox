@@ -14,7 +14,7 @@ export default function CartItem(props) {
         <span className={classes.price}>Price: {price}</span>
       </div>
       <button onClick={props.onRemove}>-</button>
-      {/* <span>{state}</span> */}
+      <span>{props.quantity}</span>
       <button onClick={props.onAdd}>+</button>
       <div className={classes.actions}>
         <button>x</button>
